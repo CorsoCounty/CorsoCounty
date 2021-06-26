@@ -1,13 +1,12 @@
-// SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.5;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./NFTMinter.sol";
 
-contract CorsoStaking is Ownable {
+contract CorsoStaking is Ownable, NFTMinter {
     using SafeERC20 for IERC20;
 
     struct UserInfo {
@@ -27,7 +26,7 @@ contract CorsoStaking is Ownable {
     }
 
     IERC20 public corso;
-    uint256 public corsoPerBlock = uint256(8 ether).div(10); //0.8 corso
+    uint256 public corsoPerBlock = uint256(8 ether) / (10); //0.8 corso
 
     PoolInfo[] public poolInfo;
     mapping(uint256 => mapping(address => UserInfo)) public userInfo;
@@ -74,11 +73,11 @@ contract CorsoStaking is Ownable {
         uint256 accCorsoPerShare = pool.accCorsoPerShare;
         uint256 depositedAmount = pool.depositedAmount;
         if (block.number > pool.lastRewardBlock && depositedAmount != 0) {
-            uint256 multiplier = block.number.sub(pool.lastRewardBlock);
-            uint256 corsoReward = multiplier.mul(corsoPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-            accCorsoPerShare = accCorsoPerShare.add(corsoReward.mul(1e12).div(depositedAmount));
+            uint256 multiplier = block.number - (pool.lastRewardBlock);
+            uint256 corsoReward = multiplier * (corsoPerBlock) * (pool.allocPoint) / (totalAllocPoint);
+            accCorsoPerShare = accCorsoPerShare + (corsoReward * (1e12) / (depositedAmount));
         }
-        return user.amount.mul(accCorsoPerShare).div(1e12).sub(user.rewardDebt).add(user.pendingRewards);
+        return user.amount * (accCorsoPerShare) / (1e12) - (user.rewardDebt) + (user.pendingRewards);
     }
 
     function updatePool(uint256 pid) internal {
@@ -92,10 +91,10 @@ contract CorsoStaking is Ownable {
             pool.lastRewardBlock = block.number;
             return;
         }
-        uint256 multiplier = block.number.sub(pool.lastRewardBlock);
-        uint256 corsoReward = multiplier.mul(corsoPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-        pool.rewardsAmount = pool.rewardsAmount.add(corsoReward);
-        pool.accCorsoPerShare = pool.accCorsoPerShare.add(corsoReward.mul(1e12).div(depositedAmount));
+        uint256 multiplier = block.number - (pool.lastRewardBlock);
+        uint256 corsoReward = multiplier * (corsoPerBlock) * (pool.allocPoint) / (totalAllocPoint);
+        pool.rewardsAmount = pool.rewardsAmount + (corsoReward);
+        pool.accCorsoPerShare = pool.accCorsoPerShare + (corsoReward * (1e12) / (depositedAmount));
         pool.lastRewardBlock = block.number;
     }
 
@@ -104,17 +103,17 @@ contract CorsoStaking is Ownable {
         UserInfo storage user = userInfo[pid][msg.sender];
         updatePool(pid);
         if (user.amount > 0) {
-            uint256 pending = user.amount.mul(pool.accCorsoPerShare).div(1e12).sub(user.rewardDebt);
+            uint256 pending = user.amount * (pool.accCorsoPerShare) / (1e12) - (user.rewardDebt);
             if (pending > 0) {
-                user.pendingRewards = user.pendingRewards.add(pending);
+                user.pendingRewards = user.pendingRewards + (pending);
             }
         }
         if (amount > 0) {
             corso.safeTransferFrom(address(msg.sender), address(this), amount);
-            user.amount = user.amount.add(amount);
-            pool.depositedAmount = pool.depositedAmount.add(amount);
+            user.amount = user.amount + (amount);
+            pool.depositedAmount = pool.depositedAmount + (amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accCorsoPerShare).div(1e12);
+        user.rewardDebt = user.amount * (pool.accCorsoPerShare) / (1e12);
         user.lastClaim = block.timestamp;
         emit Deposit(msg.sender, pid, amount);
     }
@@ -125,16 +124,16 @@ contract CorsoStaking is Ownable {
         require(block.timestamp > user.lastClaim + pool.lockupDuration, "You cannot withdraw yet!");
         require(user.amount >= amount, "Withdrawing more than you have!");
         updatePool(pid);
-        uint256 pending = user.amount.mul(pool.accCorsoPerShare).div(1e12).sub(user.rewardDebt);
+        uint256 pending = user.amount * (pool.accCorsoPerShare) / (1e12) - (user.rewardDebt);
         if (pending > 0) {
-            user.pendingRewards = user.pendingRewards.add(pending);
+            user.pendingRewards = user.pendingRewards + (pending);
         }
         if (amount > 0) {
             corso.safeTransfer(address(msg.sender), amount);
-            user.amount = user.amount.sub(amount);
-            pool.depositedAmount = pool.depositedAmount.sub(amount);
+            user.amount = user.amount - (amount);
+            pool.depositedAmount = pool.depositedAmount - (amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accCorsoPerShare).div(1e12);
+        user.rewardDebt = user.amount * (pool.accCorsoPerShare) / (1e12);
         user.lastClaim = block.timestamp;
         emit Withdraw(msg.sender, pid, amount);
     }
@@ -143,16 +142,16 @@ contract CorsoStaking is Ownable {
         PoolInfo storage pool = poolInfo[pid];
         UserInfo storage user = userInfo[pid][msg.sender];
         updatePool(pid);
-        uint256 pending = user.amount.mul(pool.accCorsoPerShare).div(1e12).sub(user.rewardDebt);
+        uint256 pending = user.amount * (pool.accCorsoPerShare) / (1e12) - (user.rewardDebt);
         if (pending > 0 || user.pendingRewards > 0) {
-            user.pendingRewards = user.pendingRewards.add(pending);
+            user.pendingRewards = user.pendingRewards + (pending);
             uint256 claimedAmount = safeCorsoTransfer(msg.sender, user.pendingRewards, pid);
             emit Claim(msg.sender, pid, claimedAmount);
-            user.pendingRewards = user.pendingRewards.sub(claimedAmount);
+            user.pendingRewards = user.pendingRewards - (claimedAmount);
             user.lastClaim = block.timestamp;
-            pool.rewardsAmount = pool.rewardsAmount.sub(claimedAmount);
+            pool.rewardsAmount = pool.rewardsAmount - (claimedAmount);
         }
-        user.rewardDebt = user.amount.mul(pool.accCorsoPerShare).div(1e12);
+        user.rewardDebt = user.amount * (pool.accCorsoPerShare) / (1e12);
     }
     
     function safeCorsoTransfer(address to, uint256 amount, uint256 pid) internal returns (uint256) {
