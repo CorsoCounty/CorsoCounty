@@ -1,0 +1,23 @@
+{
+  "name": "CorsoCounty",
+  "version": "1.0.0",
+  "description": "<!--\r **CorsoCounty/CorsoCounty** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CorsoCounty/CorsoCounty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CorsoCounty/CorsoCounty/issues"
+  },
+  "homepage": "https://github.com/CorsoCounty/CorsoCounty#readme"
+}
