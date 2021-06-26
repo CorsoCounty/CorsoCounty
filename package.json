@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/CorsoCounty/CorsoCounty/issues"
   },
-  "homepage": "https://github.com/CorsoCounty/CorsoCounty#readme"
+  "homepage": "https://github.com/CorsoCounty/CorsoCounty#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.1.0",
+    "@openzeppelin/test-helpers": "^0.5.11",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-bn": "^0.2.2",
+    "save": "^2.4.0"
+  }
 }
