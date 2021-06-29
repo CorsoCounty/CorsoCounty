@@ -7,7 +7,7 @@ The core contracts for the BEGINNING of the CorsoCounty long term goals.
  // The Molossians even issued their native currency with a Molossus stamped into the silver. A literal Molossus Coin.
  // The Molossians were killed and ensalved to Rome after siding with the wrong force and losing the war around 168 BC. Since extinct, you might say.
 
-	Decended from the Molossus is the Cane Corso. A protectorate of the people, a loyal companion and a law enforcing breed! It is an unequalled protectors of their "owners" and their "property"!
+ // Decended from the Molossus is the Cane Corso. A protectorate of the people, a loyal companion and a law enforcing breed! It is an unequalled protectors of their "owners" and their "property"!
 
 	We are the above, personified.
 
