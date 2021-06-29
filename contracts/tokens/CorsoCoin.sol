@@ -3,7 +3,19 @@
 ▒█░░░ █░░█ █▄▄▀ ▀▀█ █░░█ ▒█░░░ █░░█ █░░█ █░░█ ░░█░░ █▄▄█ 
 ▒█▄▄█ ▀▀▀▀ ▀░▀▀ ▀▀▀ ▀▀▀▀ ▒█▄▄█ ▀▀▀▀ ░▀▀▀ ▀░░▀ ░░▀░░ ▄▄▄█
 */
-
+/*
+                                                                                                                                                                                                      
+                                                        d8   ,ad8888ba,                                                      ,ad8888ba,                                                               
+  ,d                                                  ,8P'  d8"'    `"8b                                                    d8"'    `"8b                                          ,d                  
+  88                                                 d8"   d8'                                                             d8'                                                    88                  
+MM88MMM       88,dPYba,,adPYba,    ,adPPYba,       ,8P'    88              ,adPPYba,   8b,dPPYba,  ,adPPYba,   ,adPPYba,   88              ,adPPYba,   88       88  8b,dPPYba,  MM88MMM  8b       d8  
+  88          88P'   "88"    "8a  a8P_____88      d8"      88             a8"     "8a  88P'   "Y8  I8[    ""  a8"     "8a  88             a8"     "8a  88       88  88P'   `"8a   88     `8b     d8'  
+  88          88      88      88  8PP"""""""    ,8P'       Y8,            8b       d8  88           `"Y8ba,   8b       d8  Y8,            8b       d8  88       88  88       88   88      `8b   d8'   
+  88,    888  88      88      88  "8b,   ,aa   d8"          Y8a.    .a8P  "8a,   ,a8"  88          aa    ]8I  "8a,   ,a8"   Y8a.    .a8P  "8a,   ,a8"  "8a,   ,a88  88       88   88,      `8b,d8'    
+  "Y888  888  88      88      88   `"Ybbd8"'  8P'            `"Y8888Y"'    `"YbbdP"'   88          `"YbbdP"'   `"YbbdP"'     `"Y8888Y"'    `"YbbdP"'    `"YbbdP'Y8  88       88   "Y888      Y88'     
+                                                                                                                                                                                             d8'      
+                                                                                                                                                                                            d8'          
+*/
 pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Unlicensed
 interface IERC20 {
@@ -470,7 +482,7 @@ contract Ownable is Context {
     }
 }
 
-// pragma solidity >=0.5.0;
+
 
 interface IUniswapV2Factory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -489,7 +501,7 @@ interface IUniswapV2Factory {
 }
 
 
-// pragma solidity >=0.5.0;
+
 
 interface IUniswapV2Pair {
     event Approval(address indexed owner, address indexed spender, uint value);
@@ -542,7 +554,6 @@ interface IUniswapV2Pair {
     function initialize(address, address) external;
 }
 
-// pragma solidity >=0.6.2;
 
 interface IUniswapV2Router01 {
     function factory() external pure returns (address);
@@ -640,7 +651,6 @@ interface IUniswapV2Router01 {
 
 
 
-// pragma solidity >=0.6.2;
 
 interface IUniswapV2Router02 is IUniswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -1142,8 +1152,4 @@ contract CorsoCoin is Context, IERC20, Ownable {
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
-
-
-    
-
 }
