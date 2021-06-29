@@ -23,6 +23,6 @@ The core contracts for the BEGINNING of the CorsoCounty long term goals.
 	One must walk the dog before it can do it's business, so to speak.
 
 
-CorsoCounty is the crypto home to the CorsoCoin, Cane(NFT) and many more upcoming developments.
+CorsoCounty is the crypto home to the CorsoCoin and many more upcoming developments.
 
 View Docs / WhitePaper
