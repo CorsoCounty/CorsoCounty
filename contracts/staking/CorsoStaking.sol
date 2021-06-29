@@ -26,7 +26,7 @@ contract CorsoStaking is Ownable {
     }
 
     IERC20 public corso;
-    uint256 public corsoPerBlock = uint256(8 ether) / (10); //0.8 corso
+    uint256 public corsoPerBlock = uint256(8000 ether) / (10); //800 corso
 
     PoolInfo[] public poolInfo;
     mapping(uint256 => mapping(address => UserInfo)) public userInfo;
