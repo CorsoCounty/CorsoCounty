@@ -19,7 +19,7 @@ MM88MMM       88,dPYba,,adPYba,    ,adPPYba,       ,8P'    88              ,adPP
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.6.12;
+pragma solidity ^0.6.12;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
