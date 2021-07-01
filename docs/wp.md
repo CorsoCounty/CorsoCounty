@@ -41,7 +41,7 @@ By making the holder stake their CORSO in order to receive CANE, we reduce sell 
 	This has a direct increased impact on reducing the price impact of sell orders when they are placed within the pool. We are trying to ensure that over time whether first or late to the party, you have as equal an opportunity as any one else.
 
 	Molossus
-This is our bread and butter heading into the future! Using Molossus opens up many various avenues for us to explore, we aren't going to reveal them all right now! But one or two that have been discussed has been the idea of our own launchpad, but we want to see something more innovative. Perhaps, a section of pools to farm? seen that before. Perhaps borrowing/lending faculties? nope. Initially, we'll use this big boy to mint our Governance Tokens. Maybe he'll has his own synthetic assest backed by a physical assest that's tied to an individual and will change their life if...when, we get it right! That's all the clue I can leak for now :)))
+This is our bread and butter heading into the future! Using Molossus opens up many various avenues for us to explore, we aren't going to reveal them all right now! But one or two that have been discussed has been the idea of our own launchpad, but we want to see something more innovative. Perhaps, a section of pools to farm? seen that before. Perhaps borrowing/lending faculties? nope. Initially, we'll use this big boy to mint our Governance Tokens. Maybe he'll have his own synthetic assest backed by a physical assest that's tied to an individual and will change their life if...when, we get it right! That's all the clues I can leak for now :)))
 
 
 Thanks for reading this far, please visit our socials!
