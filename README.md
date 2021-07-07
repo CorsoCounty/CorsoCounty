@@ -25,4 +25,4 @@ The core contracts for the BEGINNING of the CorsoCounty long term goals.
 
 CorsoCounty is the crypto home to the CorsoCoin and many more upcoming developments.
 
-View Docs / WhitePaper
+View WhitePaper at https://corsocounty.xyz/whitepaper
